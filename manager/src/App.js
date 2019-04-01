@@ -7,13 +7,13 @@
  */
 
 import React, { Component } from 'react';
-import { createStore } from 'redux';
-import { Provider, applyMiddleware } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import firebase from 'firebase';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
-import {Router} from "react-native-router-flux";
+import RouterComponent from './router';
 
 type Props = {};
 class App extends Component<Props> {
@@ -33,7 +33,7 @@ class App extends Component<Props> {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
       <Provider store={store}>
-        <Router />
+        <RouterComponent />
       </Provider>
     );
   }

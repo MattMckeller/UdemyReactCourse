@@ -6,10 +6,9 @@ const INITIAL_STATE = {
   shift: '',
 };
 const EmployeeFormReducer = (state = INITIAL_STATE, action) => {
-  const { prop, value } = action.payload;
   switch (action.type) {
     case UPDATE_EMPLOYEE_FORM:
-      return { ...state, [prop]: value };
+      return { ...state, [action.payload.prop]: action.payload.value };
     case EMPLOYEE_CREATED:
       return { ...INITIAL_STATE };
     case EMPLOYEE_SAVE_SUCCESS:

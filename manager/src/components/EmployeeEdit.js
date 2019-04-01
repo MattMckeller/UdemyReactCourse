@@ -7,7 +7,7 @@ import {
   Card, CardSection, Input, Button, Confirm,
 } from './common';
 import EmployeeForm from './EmployeeCreate';
-import { employeeSave, employeeUpdate } from '../actions';
+import {employeeDelete, employeeSave, employeeUpdate} from '../actions';
 
 type Props = {
   name: any, phone: any, shift: any, employee: any,

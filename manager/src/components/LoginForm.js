@@ -5,8 +5,8 @@ import { Text, View } from 'react-native';
 import {
   Card, Input, Button, CardSection,
 } from './common';
-import {emailChanged, loginUser, passwordChanged} from '../actions';
-import Spinner from "./common/Spinner";
+import { emailChanged, loginUser, passwordChanged } from '../actions';
+import Spinner from './common/Spinner';
 
 type Props = {
   emailChangedAction: any,
@@ -15,6 +15,7 @@ type Props = {
   email: string,
   password: string,
   error: string,
+  loading: boolean,
 }
 class LoginForm extends Component<Props> {
   constructor() {
@@ -56,14 +57,13 @@ class LoginForm extends Component<Props> {
   renderButton() {
     const { loading } = this.props;
     if (loading === true) {
-      return <Spinner/>;
-    } else {
-      return (
-        <Button onPress={this.onButtonPress()}>
-          Login
-        </Button>
-      );
+      return <Spinner />;
     }
+    return (
+      <Button onPress={this.onButtonPress}>
+          Login
+      </Button>
+    );
   }
 
   render() {
@@ -83,6 +83,7 @@ class LoginForm extends Component<Props> {
             secureTextEntry
             label="Password"
             placeholder="password"
+            onChangeText={this.onPasswordChange}
             value={password}
           />
         </CardSection>
@@ -104,7 +105,7 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { auth } = state.auth;
+  const { auth } = state;
   return {
     email: auth.email,
     password: auth.password,
